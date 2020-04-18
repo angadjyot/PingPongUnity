@@ -1,10 +1,21 @@
-﻿using System.Collections;
+﻿
+// Author's Name - Angadjot Singh , Garima Prashar , Harnam Kaur
+// Student Number - 301060981,      301093329      , 301093907
+// Date last Modified - 17th april 2020
+// Program Descriptor - This file includes the logic of the ball.
+// Revision History - 1.0
+
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
 
+
+// declaring the variables
     public float moveSpeed = 12.0f;   
     public Vector2 ballDirection = Vector2.left;
 
@@ -26,7 +37,8 @@ public class Ball : MonoBehaviour
 
     private Game game;
 
-    private bool assignedpoint;
+    private bool assignedpoint; 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -77,6 +89,7 @@ public class Ball : MonoBehaviour
         
     }
 
+// function to check collision for ball
     bool checkCollision (){
         playerPaddleMaxY = paddlePlayer.transform.localPosition.y + playerPaddleHeight / 2;
         playerPaddleMinY = paddlePlayer.transform.localPosition.y - playerPaddleHeight / 2;
@@ -137,6 +150,8 @@ public class Ball : MonoBehaviour
         return false;
     }
 
+
+// function if the ball is moving and checking collision
     void move (){ 
 
         if (!checkCollision ()){
@@ -177,6 +192,7 @@ public class Ball : MonoBehaviour
     }
 
 
+// function for getting random bounce angle for the ball 
     float GetRandomBounceAngle(float minDegrees = 160f , float maxDegrees = 260f){
         float minRad = minDegrees * Mathf.PI / 180;
         float maxRad = maxDegrees * Mathf.PI / 180;

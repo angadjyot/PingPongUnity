@@ -1,10 +1,19 @@
-﻿using System.Collections;
+﻿
+// Author's Name - Angadjot Singh , Garima Prashar , Harnam Kaur
+// Student Number - 301060981,      301093329      , 301093907
+// Date last Modified - 17th april 2020
+// Program Descriptor - This file includes the logic of the ball.
+// Revision History - 1.0
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Game : MonoBehaviour
 { 
 
+// declaring the variables 
     private GameObject ball;
     private int computerScore;
     private int playerScore;
@@ -17,6 +26,7 @@ public class Game : MonoBehaviour
     public int winningScore = 2;
 
 
+// enum for the game state 
     public enum GameState{
         Playing,GameOver,Paused,Launched
     }
@@ -42,6 +52,8 @@ public class Game : MonoBehaviour
         CheckInput ();
     }
 
+
+// function for checking the state of the function 
     void CheckInput (){
 
         if (gameState == GameState.Paused || gameState == GameState.Playing){
@@ -57,6 +69,8 @@ public class Game : MonoBehaviour
         }
     }
 
+
+// function for checking the score 
     void CheckScore (){
 
         if (playerScore >= winningScore || computerScore >= winningScore){ 
@@ -72,27 +86,32 @@ public class Game : MonoBehaviour
 
     }
 
+// function for spawning the ball  
     void spawanBall (){
         ball = GameObject.Instantiate ((GameObject)Resources.Load ("Prefabs/ball", typeof(GameObject)));
         ball.transform.localPosition = new Vector3 (12,0,-2);
     }
 
+// function if the player wins
     private void PlayerWins (){ 
         hud.winPlayer.enabled = true;
         GameOver (); 
     }    
 
+// function if the computer wins
     private void ComputerWins (){
         hud.winComputer.enabled = true;
         GameOver ();
     } 
 
+// function for the computer point
     public void ComputerPoint (){
          computerScore ++;
          hud.computerScore.text = computerScore.ToString ();
          NextRound ();
     }
 
+// function for the player point
     public void PlayerPoint (){
         playerScore ++;
         hud.playerScore.text = playerScore.ToString ();
@@ -100,6 +119,7 @@ public class Game : MonoBehaviour
     }
 
 
+//  function for starting the initial values
     private void StartGame() {
         playerScore = 0;
         computerScore = 0;
@@ -121,6 +141,7 @@ public class Game : MonoBehaviour
 
     }
 
+// checking the state for the game 
     private void NextRound (){
 
     if (gameState == GameState.Playing){
@@ -131,6 +152,8 @@ public class Game : MonoBehaviour
         }
     }
 
+
+// game over function 
     private void GameOver (){
         GameObject.Destroy (ball.gameObject);
         hud.playAgain.text = "PRESS SPACEBAR TO PLAY AGAIN";
@@ -138,6 +161,8 @@ public class Game : MonoBehaviour
         gameState = GameState.GameOver;
     }
 
+
+// function for checking the state of the game 
     private void pauseResumeGame (){
         if (gameState == GameState.Paused) { 
 

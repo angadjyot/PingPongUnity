@@ -1,9 +1,20 @@
-﻿using System.Collections;
+﻿
+// Author's Name - Angadjot Singh , Garima Prashar , Harnam Kaur
+// Student Number - 301060981,      301093329      , 301093907
+// Date last Modified - 17th april 2020
+// Program Descriptor - This file includes the logic of the ball.
+// Revision History - 1.0
+
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Computer : MonoBehaviour
 {
+
+	// declaring the variables 
     public float moveSpeed = 8.0f;
 	public float topBounds = 8.3f;
 	public float bottomBounds = -8.3f;
@@ -29,6 +40,8 @@ public class Computer : MonoBehaviour
 		}
     }
      
+
+// function for the ball for the computer player  
 	void Move (){
    
 		if (!ball)
