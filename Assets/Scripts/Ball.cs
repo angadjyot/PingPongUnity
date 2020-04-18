@@ -22,6 +22,12 @@ public class Ball : MonoBehaviour
     public float topBounds = 9.4f;
     public float bottomBounds = -9.4f;
 
+
+    public int speedIncreaseInterval = 20;
+    public float speedIncreaseBy = 1.0f;
+
+    private float speedIncreaseTimer = 0;
+
     private float playerPaddleHeight,playerPaddleWidth,playerPaddleMaxX,playerPaddleMaxY,
     playerPaddleMinX,playerPaddleMinY;
     private float ballWidth,ballHeight;   
@@ -84,12 +90,32 @@ public class Ball : MonoBehaviour
 
         if (game.gameState != Game.GameState.Paused) {
             move ();
+            UpdateSpeedIncrease ();
         }       
 
         
-    }
+    } 
+
+
+     void UpdateSpeedIncrease (){
+
+         if (speedIncreaseTimer >= speedIncreaseInterval) {
+             speedIncreaseTimer = 0;
+
+             if (moveSpeed > 0) 
+                 moveSpeed += speedIncreaseBy;
+             else 
+                moveSpeed -= speedIncreaseBy;
+
+         } else {
+             speedIncreaseTimer += Time.deltaTime; 
+         }
+
+     }   
+
 
 // function to check collision for ball
+
     bool checkCollision (){
         playerPaddleMaxY = paddlePlayer.transform.localPosition.y + playerPaddleHeight / 2;
         playerPaddleMinY = paddlePlayer.transform.localPosition.y - playerPaddleHeight / 2;
